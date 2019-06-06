@@ -1,0 +1,190 @@
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="https://cdn.rawgit.com/ashleighy/emoji.js/master/emoji.js.js"></script>
+
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+ 
+
+
+
+
+
+<script>
+function weather()
+{
+var url="https://api.darksky.net/forecast/";
+var key="cb32cfef92e7f63b11b370b58cd5e798";
+var lati;
+var data;
+var tempf;
+var icon;
+var tempc;
+var long;
+  var summary;
+  $("#tempSwitchDiv").removeClass("secret");
+		$("#icon").removeClass("secret");
+if(navigator.geolocation){
+navigator.geolocation.getCurrentPosition(showPosition);
+}
+else{
+$("#data1").html("geolocation is not suported by the browser");
+}
+function showPosition(position)
+{
+var lati=position.coords.latitude;
+var long=position.coords.longitude;
+  
+$.getJSON(url+key+"/"+lati+","+long+"?callback=?", function(data){
+console.log(data);
+tempf=data.currently.temperature;
+var icon=data.currently.icon;
+  var summary=data.hourly.summary;
+$("#temperature").html(tempf);
+$("#summary").html(summary);  
+ var city=data.timezone;
+  $("#data1").html("Temperature at "+city+" is");
+    var icon = data.currently.icon;
+        switch(icon){
+          case "clear-day":
+            var text = "Clear Day";
+            var icon = "https://cdn4.iconfinder.com/data/icons/wthr-color/32/sunny-512.png";
+            break;
+          case "clear-night":
+            var text = "Clear Night.";
+            var icon = "https://cdn3.iconfinder.com/data/icons/weather-16/256/Clear_Night-512.png";
+            break;
+          case "rain":
+            var text = "Raining";
+            var icon = "https://cdn4.iconfinder.com/data/icons/weather-conditions/512/heavy_rain_cloud-512.png";
+            break;
+          case "snow":
+            var text = "Snowy";
+            var icon = "https://d30y9cdsu7xlg0.cloudfront.net/png/33414-200.png";
+            break;
+          case "sleet":
+            var text = "Snowy and Rainy";
+            var icon = "https://cdn3.iconfinder.com/data/icons/chubby-weather/439/rain_snow-512.png";
+            break;
+            case "fog":
+            var text = "Foggy";
+            var icon = "https://cdn0.iconfinder.com/data/icons/large-weather-icons/256/Strong_fog.png";
+            break;
+          case "wind":
+            var text = "Windy";
+            var icon = "http://www.iconsfind.com/wp-content/uploads/2015/11/20151129_565a5f240abc6.png";
+            break;
+          
+          case "cloudy":
+            var text = "Cloudy";
+            var icon ="http://icon-park.com/imagefiles/simple_weather_icons_cloudy.png";
+            break;
+          case "partly-cloudy-day":
+            var text = "Partly Cloudy Day";
+            var icon ="https://cdn4.iconfinder.com/data/icons/wthr-color/32/partly-cloudy-day-512.png";
+		
+            break;
+
+          case "partly-cloudy-night":
+            var text = "Partly Cloudy Night";
+            var icon ="http://www.icone-png.com/png/11/10799.png";
+            break;
+          case "hail":
+            var text = "Hailstone";
+            var icon = "https://cdn4.iconfinder.com/data/icons/weather-conditions/512/shower_of_hail_cloud-512.png";
+            break;
+          case "thunderstorm":
+            var text = "Thunderstorm";
+            var icon = "https://cdn3.iconfinder.com/data/icons/weather-16/256/Storm-512.png";
+            break;
+          
+          default:
+            var text = "Error finding weather";
+            var icon = "img/SVG/Compass.svg";
+            break;
+        }
+  
+    $("#text").html(text);
+        $("#icon").attr("src",icon);
+  
+  function temp(){
+			if($("#tempSwitch").prop("checked")) {
+				var tempc = ((tempf-32)/1.8).toFixed(2);
+				$("#temperature").html(tempc + " °C");
+			} else {
+				$("#temperature").html(tempf + " °F");
+			}
+		}
+ temp()
+		$("#tempSwitch").change(temp);
+})
+  
+  
+};
+};
+
+</script>
+
+<style>
+body{
+  background-image:url("http://wallpapercave.com/wp/EUUoCAC.jpg");
+}
+h1{
+  
+  font-family:Matura MT Script Capitals;
+ 
+}
+.main{
+  text-align:center;
+  
+}
+#icon {
+  width:200px;
+}
+.secret
+{
+  display:none;
+}
+.btn{
+  borger-width:5px;
+  border-color:blue;
+  color:blue;
+}
+footer{
+margin-top:10%;
+}
+</style>
+
+<div class="back">
+  <div class="main">
+<h1>Weather Forecast</h1>
+<br>
+
+  <button onclick="weather()" class="btn btn-outline-info btn-lg">Check Weather</button>
+  <br><br>
+  <p class="data" id="data1"></p>
+
+  <h3 id="temperature"></h3>
+  <div id="tempSwitchDiv" class="secret">
+					<input id="tempSwitch" type="checkbox"  unchecked data-toggle="toggle" data-on="Fahrenheit" data-off="Celsius" data-onstyle="danger" data-offstyle="success" data-width="150">
+<br><br>
+				</div>
+  <h2 id="text"></h2>
+<br><br>
+ 	<img id="icon" src="" class="secret">
+<br> <br>
+ <p id="summary"></p>
+</div>
+</div>
+<div>
+<footer class="text-center">
+      <hr>
+      <p>Written and coded by <a href="https://www.freecodecamp.com/fcc3af33760" target="_blank">Nikhil Malhotra</a>.</p>
+    </footer></div>

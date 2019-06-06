@@ -1,0 +1,486 @@
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="https://cdn.rawgit.com/ashleighy/emoji.js/master/emoji.js.js"></script>
+
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+ 
+
+
+
+
+
+
+
+
+<script>
+var off=false;
+var strict=false;
+function offf(){
+  if(off==false){
+  $("#onn").removeClass("green");
+  $("#onn").addClass("red");
+  $("#onn").html("OFF");
+   
+    $(".start p").removeClass("click");
+  off=true;
+  }
+    else{
+      off=false;
+      $(".b1").addClass("c1");
+      $(".b2").addClass("c2");
+      $(".b3").addClass("c3");
+      $(".b4").addClass("c4");
+      $(".b1").removeClass("color1");
+      $(".b2").removeClass("color2");
+      $(".b3").removeClass("color3");
+      $(".b4").removeClass("color4");
+      $(".base p").addClass("click");
+    $(".start p").addClass("click");
+      $("#onn").addClass("green");
+  $("#onn").removeClass("red");
+  $("#onn").html("ON");
+    }
+  $(".s1").html("Start");
+  press=[];
+  goal=0;
+  count=1;
+  random=[Math.floor((Math.random()*4)+1)];
+  $(".on").html("--");
+}
+
+
+var s1="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3";
+var s2="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3";
+var s3="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3";
+var s4="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3";
+var p=$(".base p");
+var count=1;
+var random=[Math.floor((Math.random()*4)+1)];
+var press=[];
+var goal=0;
+function runn(goal){
+  var on=p[random[goal]];
+  $(".s1").html("Repeat");
+   
+ $(".on").html(count);
+  
+   play(random[goal]);
+  
+  setTimeout(function(){
+    $("#"+random[goal]).removeClass("c"+random[goal]);
+    
+    $("#"+random[goal]).addClass("color"+random[goal]);
+    },1000);   
+  setTimeout(function(){
+    $("#"+random[goal]).addClass("c"+random[goal]);
+    
+    $("#"+random[goal]).removeClass("color"+random[goal]);
+      goal++; 
+    if(goal<random.length){
+                    runn(goal);
+                  }
+  },2000);
+}
+function pressb(bb){
+ console.log(bb); 
+  var bbindex=bbs;
+  press.push(bbindex);
+  
+  check(bbindex);
+}
+function check(bbindex){
+  var value=press.length;
+  
+  if(bbindex===random[value-1]){
+    if(value===random.length){
+      next()
+    }
+  }
+    else if(strict==true){
+        $(".on").html("!!");
+  setTimeout(function(){
+    $(".on").html(count);
+    reset();
+    },1000);
+      }
+      else{
+      display(restart);
+      }
+      
+  }
+function display(f){
+  $(".on").html("!!");
+  setTimeout(function(){
+    $(".on").html(count);
+    if(f){
+      f();
+    }
+    },1000);
+}
+function next(){
+  count++;
+  press=[];
+  goal=0;
+  if(count>=21)
+   {
+     $("#ss").html("Start");
+   $(".on").html("**");
+     $(".base p").addClass("click");
+    press=[];
+  goal=0;
+  count=1;
+  random=[Math.floor((Math.random()*4)+1)]; 
+     setTimeout(function(){
+       $(".winner").fadeIn(500);
+     },500);
+     setTimeout(function(){
+       $(".winner").fadeOut(500);
+     },2000);
+   }
+  else{
+random.push(Math.floor((Math.random()*4)+1));
+runn(goal);
+
+  $(".on").html(count);
+  }
+  }
+function restart(){
+  press=[];
+  goal=0;
+  runn(goal);
+}
+function reset(){
+  press=[];
+  goal=0;
+  count=1;
+  $(".on").html(count);
+  random=[Math.floor((Math.random()*4)+1)];
+  runn(goal);
+}
+$(document).ready(function(){
+  $(".s1").on("click", function(){
+     $(".base p").removeClass("click");
+    runn(goal)});
+  
+  
+    $(".base p").on("click",function(event){
+      play(parseInt(event.target.id));
+    
+    
+      pressb(parseInt(event.target.id));
+      
+    });
+    $("#reset").on("click",reset);
+  });
+
+
+
+
+function play(val){
+  var audio=document.createElement("audio");
+  audio.setAttribute("autoplay","autoplay");
+  if(val==1){
+    audio.setAttribute("src",s1);
+  }
+  else if(val==2){
+    audio.setAttribute("src",s2);
+  }
+  else if(val==3){
+    audio.setAttribute("src",s3);
+  }
+  else if(val==4){
+    audio.setAttribute("src",s4);
+  }
+  else{}
+  
+  audio.play();
+}
+function strr(){
+  if(strict==false)
+    {
+  strict=true;
+  $(".s2").addClass("color2");
+  $(".s2").removeClass("c2");
+}
+  else{
+    strict=false;
+  $(".s2").removeClass("color2");
+  $(".s2").addClass("c2");
+  }
+}
+</script>
+
+
+
+<style>
+h1{
+  text-align:center;
+  font-size:50px;
+  font-family:Cooper;
+}
+body{
+  background-image:url("https://cdn.pixabay.com/photo/2014/04/05/11/22/background-315469_960_720.jpg");
+}
+.color1{
+background-color:rgba(0, 300, 0, 1.0 );  
+}
+.color2{
+ background-color:rgba(500, 0, 0, 1.0 );  
+}
+.color3{
+ background-color:rgba(0, 0, 300, 1.0 ); 
+}
+.color4{
+  background-color:rgba(500, 500, 0, 1.0 );
+}
+.base{
+ 
+width:500px;
+height:500px;
+margin:50px auto;
+background-color:grey;
+border-radius:100%;
+
+}
+.click{
+  pointer-events:none;
+}
+
+.base p{
+  
+width:200px;
+height:200px;
+position:relative;
+margin: 0 7px 11px 0;
+}
+
+.c1{
+  background-color:rgba(0, 100, 0, 1.0 );
+}
+.base .b1{
+float:left;
+
+margin:40px 0px 0px 40px;
+border-radius:100% 0 0 0;
+}
+.base .b1:hover{
+  background-color:rgba(0, 300, 0, 1.0 );
+  cursor:pointer;
+  
+}
+
+.c3{
+background-color:rgba(0, 0, 100, 1.0 );  
+}
+.base .b3{
+float:left;
+
+margin:20px 0px 0px 40px;
+border-radius:0 0 0 100%;
+}
+.base .b3:hover{
+ background-color:rgba(0, 0, 300, 1.0 );
+  cursor:pointer;
+  
+}
+.c2{
+  background-color:rgba(100, 0, 0, 1.0 );
+}
+.base .b2{
+float:right;
+
+margin:40px 40px 0px 0px;
+border-radius:0 100% 0 0;
+}
+.base .b2:hover{
+   background-color:rgba(900, 0, 0, 1.0 );  cursor:pointer;
+  
+}
+
+.c4{
+background-color:rgba(200, 200, 0, 1.0 );  
+}
+.base .b4{
+float:right;
+
+margin:20px 40px 0px 0px;
+border-radius:0px 0px 100% 0px;
+  
+  
+}
+.base .b4:hover{
+   background-color:rgba(500, 500, 0, 1.0 );  cursor:pointer;
+  
+}
+
+.start{
+overflow:hidden;
+width:500px;
+height:120px;
+margin:auto;
+background-color:rgba(0,100,50,0.9);
+border-radius:5px;
+
+}
+.start .screenbase{
+overflow:hidden;
+margin-left:50px;
+margin-top:10px;
+width:70px;
+height:80px;
+background-color:rgba(0, 0, 100, 1.0);;
+border-radius:5px;
+
+}
+.start .screen {
+
+	height: 70px;
+	width: 60px;	
+box-shadow: inset 0px 0px 0px 3px  rgba(0, 0, 0, 0.2);
+margin-top:5px;
+margin-left:5px;
+	background:silver;
+	border-radius: 4px;
+	font-size: 50px;
+	line-height: 70px;
+	color: red;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	letter-spacing: 1px;
+}
+.start .points{
+margin-top:2px;
+margin-left:60px;
+color:white;
+font-family:cooper;
+}
+.start .s1{
+	cursor: pointer;
+	width: 66px;
+	height: 36px;
+	background: white;
+	border-radius: 3px;
+	color: grey;
+	line-height: 36px;
+	text-align: center;
+  transition: all 0.3s ease;
+margin-top:-100px;
+margin-left:205px;
+}
+.s1:hover {
+	background: #9c89f5;
+	box-shadow: 0px 1px #6b54d2;
+	color: white;	
+}
+.s2{
+	
+	cursor: pointer;
+	width: 66px;
+	height: 36px;
+	
+	border-radius: 3px;
+	color: white;
+	line-height: 36px;
+	text-align: center;
+  transition: all 0.3s ease;
+margin-top:-95px;
+margin-left:365px;
+}
+.s2:hover {
+	background:rgba(300, 0, 0, 1.0 );
+	box-shadow: 0px 1px #6b54d2;
+	color: white;	
+}
+.s3{
+	cursor: pointer;
+	width: 66px;
+	height: 36px;
+	background:rgba(200, 0, 0, 1.0 );
+	border-radius: 3px;
+	color: white;
+	line-height: 36px;
+	text-align: center;
+  transition: all 0.3s ease;
+margin-top:20px;
+margin-left:205px;
+}
+.s3:hover {
+	background:rgba(300, 0, 0, 1.0 );
+	box-shadow: 0px 1px #6b54d2;
+	color: white;	
+}
+.secret{
+display:none;
+}
+#onn{
+  margin-top:5px;
+  margin-left:365px;
+  border-radius:5px;
+  width:70px;
+  height:30px;  
+}
+.red{
+  background-color:red;
+  
+}
+.green{
+  background-color:green;
+}
+.winner{
+  width:500px;
+height:500px;
+margin:-550px auto;
+background-color:grey;
+  margin-left:400px;
+border-radius:100%;
+z-index:2000;
+  position:absolute;
+}
+.winner .win{
+font-size:80px;
+	float: left;
+	position: relative;
+color:white;
+
+	
+  left:60px;
+	
+	line-height: 500px;
+	text-align: center;
+
+}
+</style>
+
+<h1><b>Simon</b></h1>
+<div class="base">
+<p class="b1 c1 click" id="1" disabled></p>
+<p class="b2 c2 click" id="2" value=2></p>
+<p class="b3 c3 click" id=3></p>
+<p class="b4 c4 click" id="4" value="4"></p>
+  
+</div>
+<div class="winner secret">
+  <p class="win">WINNER!!</p>
+</div>
+<div class="start">
+<div class="screenbase">
+
+<div class="screen">
+<p class="on">--</p>
+</div>
+</div>
+<p class="points">Points</p>
+  
+<p class="s1 click" id="ss" >Start</p>
+<p class="s3 click" id="reset">Reset</p>
+<p class="s2 click c2" id="strict" onclick="strr()" >Strict</P>
+<button class ="green " id="onn"  onclick="offf()" >ON</button>
+</div>

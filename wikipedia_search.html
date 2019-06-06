@@ -1,0 +1,167 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="https://cdn.rawgit.com/ashleighy/emoji.js/master/emoji.js.js"></script>
+
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+function notFound() {
+   
+  console.log("not found");
+  $("#p").html("<h1>Error: Nothing Found</h1>");
+}
+function displayResults(json) {
+  
+$("#p2").html("Click on the link to continue the article");
+  
+    for ( i = 0; i < json[1].length; i++) {
+      $("#p").append("<li><a href=" + json[3][i] + " target='_blank'>" + json[1][i] + ": " + json[2][i] + "</a></li><br>");
+    }
+  
+} 
+$(document).ready(function() {
+    $("#b1").on("click", function() {
+        var wikiSearch = $("#in").val();
+     if(wikiSearch=="")
+       {
+         $("#p2").html("Type something in the text box to search");
+         $("#p").empty();
+     $("#p").addClass("secret");
+       }
+      
+      else{
+        
+      
+        $("#in").val("");
+        $("#p").empty();
+        $("#p2").empty();
+  $("#p").removeClass("secret");
+        $.ajax({
+            url: 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + wikiSearch,
+
+            cache: true,
+            dataType: 'jsonp'
+          })
+          .fail(function(err) {
+            console.log(err);
+          })
+         .always(function(json) {
+        console.log(json);
+            json[1].length === 0 ? notFound() : displayResults(json);
+          });
+      } }) 
+ })
+  
+</script>
+<style>
+body{
+  background-image:url("https://wallpaperscraft.com/image/line_light_background_bright_43975_2560x1600.jpg");
+}
+
+h1{
+  font-family:Sitka Small;
+  
+}
+.back{
+  text-align:center;
+}
+#p2{
+ font-size:25px ;
+  text-align:center;
+}
+#pp{
+ font-size:25px ;
+}
+.p1{
+ font-size:25px ;
+}
+.btn{
+width:140px;  
+  height:40px;
+}
+#b1{
+  color:red;
+  font-size:20px;
+  width:100px;
+  height:35px;
+  background-color:lightblue;
+}
+#in{
+  border-radius:5px;
+  
+}
+.pback{
+  text-align:center;
+  background-color:;
+}
+.secret{
+  display:none;
+}
+  #p{
+    margin-left:90px;
+    border-radius:6px;
+    width:1300px;
+    color:red;
+   background-image:url("https://wallpaperscraft.com/image/dots_light_background_texture_surface_50767_2560x1600.jpg"); 
+    padding-top:20px;
+  
+}
+li{
+ 
+ 
+  border-radius:10px;
+  width:1200px;
+  background-color:lightblue;
+  padding:20px;
+  
+}
+
+</style>
+
+<div class="back">
+  <h1><b>Wikipedia Viewer</b></h1>
+  <p class="p1">Click "
+<a href="http://en.wikipedia.org/wiki/Special:Random" target="_blank">
+<button class="btn" id="b2">Random Article</button>
+</a>
+" to search random article</p>
+  <br>
+  <p id="pp">Else type what you want to search</p>
+  <input  type="text" id="in"></input><br><br>
+  <button class="fa fa-search btn" id="b1">search</button>
+</div>
+<br>
+<div class="pback">
+  <p id="p2"></p>
+<ol class="secret" id="p"></ol>
+ 
+</div>
+<footer class="text-center">
+      <hr>
+      <p>Written and coded by <a href="https://www.freecodecamp.com/fcc3af33760" target="_blank">Nikhil Malhotra</a>.</p>
+    </footer></div>

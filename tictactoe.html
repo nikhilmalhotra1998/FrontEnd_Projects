@@ -1,0 +1,975 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="https://cdn.rawgit.com/ashleighy/emoji.js/master/emoji.js.js"></script>
+
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+ 
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+$(document).ready(function(){
+var spot1=$("#spot1");
+var spot2=$("#spot2");
+var spot3=$("#spot3");
+var spot4=$("#spot4");
+var spot5=$("#spot5");
+var spot6=$("#spot6");
+var spot7=$("#spot7");
+var spot8=$("#spot8");
+var spot9=$("#spot9");
+
+
+
+var turns=0;
+
+
+$("#one").on("click",function(){
+$("h3").html("Choose your symbol");
+$("#play").addClass("secret");
+
+  $("#choice").removeClass("secret");
+var x;
+var o;
+$("#X").on("click",function(){
+  x="O";
+  o="X";
+    $("#board").removeClass("secret");
+  $("#choice").addClass("secret");
+  });
+$("#O").on("click",function(){
+  x="X";
+ o="O";
+    $("#board").removeClass("secret");
+  $("#choice").addClass("secret");
+  });
+  
+
+$("#board p").on("click",function(){
+
+if($(this).hasClass("disable")){
+//filled;
+}
+
+else if(turns%2==0){
+turns++;
+  
+$(this).text(o);
+$(this).addClass("disable o");
+
+draw(turns);  
+
+if((spot1.hasClass("o") && spot2.hasClass("o") && spot3.hasClass("o")) || (spot4.hasClass("o") && spot5.hasClass("o") && spot6.hasClass("o")) || (spot7.hasClass("o") && spot8.hasClass("o") && spot9.hasClass("o")) || (spot1.hasClass("o") && spot4.hasClass("o") && spot7.hasClass("o")) || (spot2.hasClass("o") && spot5.hasClass("o") && spot8.hasClass("o")) || (spot3.hasClass("o") && spot6.hasClass("o") && spot9.hasClass("o")) || (spot1.hasClass("o") && spot5.hasClass("o") && spot9.hasClass("o")) || (spot3.hasClass("o") && spot5.hasClass("o") && spot7.hasClass("o"))){
+ 
+
+  var z=setTimeout(function() {
+    $(".message").html("winner o");
+    $(".message").fadeIn(500);
+  }, 1500);setTimeout(function() {
+    $(".message").fadeOut(1000);
+  }, 3000);
+  
+turns=0;
+  $("#board p").text("");
+$("#board p").removeClass("disable");
+$("#board p").removeClass("o");
+$("#board p").removeClass("x");
+}
+
+
+if(turns%2==1 && turns<9){
+turns++;
+
+if($("#spot1").html()===x && $("#spot2").html()===x && $("#spot3").html()!==o)
+{
+$("#spot3").html(x);
+$("#spot3").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot3").html()===x && $("#spot2").html()===x && $("#spot1").html()!==o)
+{
+$("#spot1").html(x);
+$("#spot1").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot1").html()===x && $("#spot3").html()===x && $("#spot2").html()!==o)
+{
+$("#spot2").html(x);
+$("#spot2").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot3").html()===x && $("#spot5").html()===x && $("#spot7").html()!==o)
+{
+$("#spot7").html(x);
+$("#spot7").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot7").html()===x && $("#spot5").html()===x && $("#spot3").html()!==o)
+{
+$("#spot3").html(x);
+$("#spot3").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot7").html()===x && $("#spot3").html()===x && $("#spot5").html()!==o)
+{
+$("#spot5").html(x);
+$("#spot5").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot4").html()===x && $("#spot5").html()===x && $("#spot6").html()!==o)
+{
+$("#spot6").html(x);
+$("#spot6").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot6").html()===x && $("#spot5").html()===x && $("#spot4").html()!==o)
+{
+$("#spot4").html(x);
+$("#spot4").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot6").html()===x && $("#spot4").html()===x && $("#spot5").html()!==o)
+{
+$("#spot5").html(x);
+$("#spot5").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot7").html()===x && $("#spot9").html()===x && $("#spot8").html()!==o)
+{
+$("#spot8").html(x);
+$("#spot8").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot7").html()===x && $("#spot8").html()===x && $("#spot9").html()!==o)
+{
+$("#spot9").html(x);
+$("#spot9").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot8").html()===x && $("#spot9").html()===x && $("#spot7").html()!==o)
+{
+$("#spot7").html(x);
+$("#spot7").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot6").html()===x && $("#spot9").html()===x && $("#spot3").html()!==o)
+{
+$("#spot3").html(x);
+$("#spot3").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot3").html()===x && $("#spot9").html()===x && $("#spot6").html()!==o)
+{
+$("#spot6").html(x);
+$("#spot6").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot3").html()===x && $("#spot6").html()===x && $("#spot9").html()!==o)
+{
+$("#spot9").html(x);
+$("#spot9").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot4").html()===x && $("#spot7").html()===x && $("#spot1").html()!==o)
+{
+$("#spot1").html(x);
+$("#spot1").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot1").html()===x && $("#spot7").html()===x && $("#spot4").html()!==o)
+{
+$("#spot4").html(x);
+$("#spot4").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot4").html()===x && $("#spot1").html()===x && $("#spot7").html()!==o)
+{
+$("#spot7").html(x);
+$("#spot7").addClass("disable x");
+check();
+draw(turns);
+
+}
+
+else if($("#spot2").html()===x && $("#spot5").html()===x && $("#spot8").html()!==o)
+{
+$("#spot8").html(x);
+$("#spot8").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot8").html()===x && $("#spot5").html()===x && $("#spot2").html()!==o)
+{
+$("#spot2").html(x);
+$("#spot2").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot8").html()===x && $("#spot2").html()===x && $("#spot5").html()!==o)
+{
+$("#spot5").html(x);
+$("#spot5").addClass("disable x");
+check();
+draw(turns);
+
+
+}
+else if($("#spot1").html()===x && $("#spot5").html()===x && $("#spot9").html()!==o)
+{
+$("#spot9").html(x);
+$("#spot9").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot1").html()===x && $("#spot9").html()===x && $("#spot5").html()!==o)
+{
+$("#spot5").html(x);
+$("#spot5").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot9").html()===x && $("#spot5").html()===x && $("#spot1").html()!==o)
+{
+$("#spot1").html(x);
+$("#spot1").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot1").html()===o && $("#spot2").html()===o && $("#spot3").html()!==x)
+{
+$("#spot3").html(x);
+$("#spot3").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot3").html()===o && $("#spot2").html()===o && $("#spot1").html()!==x)
+{
+$("#spot1").html(x);
+$("#spot1").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot1").html()===o && $("#spot3").html()===o && $("#spot2").html()!==x)
+{
+$("#spot2").html(x);
+$("#spot2").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot3").html()===o && $("#spot5").html()===o && $("#spot7").html()!==x)
+{
+$("#spot7").html(x);
+$("#spot7").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot7").html()===o && $("#spot5").html()===o && $("#spot3").html()!==x)
+{
+$("#spot3").html(x);
+$("#spot3").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot7").html()===o && $("#spot3").html()===o && $("#spot5").html()!==x)
+{
+$("#spot5").html(x);
+$("#spot5").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot4").html()===o && $("#spot5").html()===o && $("#spot6").html()!==x)
+{
+$("#spot6").html(x);
+$("#spot6").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot6").html()===o && $("#spot5").html()===o && $("#spot4").html()!==x)
+{
+$("#spot4").html(x);
+$("#spot4").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot6").html()===o && $("#spot4").html()===o && $("#spot5").html()!==x)
+{
+$("#spot5").html(x);
+$("#spot5").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot7").html()===o && $("#spot9").html()===o && $("#spot8").html()!==x)
+{
+$("#spot8").html(x);
+$("#spot8").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot7").html()===o && $("#spot8").html()===o && $("#spot9").html()!==x)
+{
+$("#spot9").html(x);
+$("#spot9").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot8").html()===o && $("#spot9").html()===o && $("#spot7").html()!==x)
+{
+$("#spot7").html(x);
+$("#spot7").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot6").html()===o && $("#spot9").html()===o && $("#spot3").html()!==x)
+{
+$("#spot3").html(x);
+$("#spot3").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot3").html()===o && $("#spot9").html()===o && $("#spot6").html()!==x)
+{
+$("#spot6").html(x);
+$("#spot6").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot3").html()===o && $("#spot6").html()===o && $("#spot9").html()!==x)
+{
+$("#spot9").html(x);
+$("#spot9").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot4").html()===o && $("#spot7").html()===o && $("#spot1").html()!==x)
+{
+$("#spot1").html(x);
+$("#spot1").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot1").html()===o && $("#spot7").html()===o && $("#spot4").html()!==x)
+{
+$("#spot4").html(x);
+$("#spot4").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot4").html()===o && $("#spot1").html()===o && $("#spot7").html()!==x)
+{
+$("#spot7").html(x);
+$("#spot7").addClass("disable x");
+check();
+draw(turns);
+
+}
+
+else if($("#spot2").html()===o && $("#spot5").html()===o && $("#spot8").html()!==x)
+{
+$("#spot8").html(x);
+$("#spot8").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot8").html()===o && $("#spot5").html()===o && $("#spot2").html()!==x)
+{
+$("#spot2").html(x);
+$("#spot2").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot8").html()===o && $("#spot2").html()===o && $("#spot5").html()!==x)
+{
+$("#spot5").html(x);
+$("#spot5").addClass("disable x");
+check();
+draw(turns);
+
+
+}
+else if($("#spot1").html()===o && $("#spot5").html()===o && $("#spot9").html()!==x)
+{
+$("#spot9").html(x);
+$("#spot9").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot1").html()===o && $("#spot9").html()===o && $("#spot5").html()!==x)
+{
+$("#spot5").html(x);
+$("#spot5").addClass("disable x");
+check();
+draw(turns);
+
+}
+else if($("#spot9").html()===o && $("#spot5").html()===o && $("#spot1").html()!==x)
+{
+$("#spot1").html(x);
+$("#spot1").addClass("disable x");
+check();
+draw(turns);
+
+}
+ 
+ 
+else if($("#spot5").html()!==o && $("#spot5").html()!==x)
+{
+$("#spot5").html(x);
+$("#spot5").addClass("disable x");
+check();
+draw(turns);
+}
+else if($("#spot5").html()===x && $("#spot2").html()!==x && $("#spot2").html()!==o)
+{
+$("#spot2").html(x);
+$("#spot2").addClass("disable x");
+check();
+draw(turns);
+}
+else if($("#spot5").html()===x && $("#spot8").html()!==x && $("#spot8").html()!==o)
+{
+$("#spot8").html(x);
+$("#spot8").addClass("disable x");
+check();
+draw(turns);
+}     
+
+else if($("#spot5").html()===x && $("#spot4").html()!==x && $("#spot4").html()!==o)
+{
+$("#spot4").html(x);
+$("#spot4").addClass("disable x");
+check();
+draw(turns);
+}
+else if($("#spot5").html()===x && $("#spot6").html()!==x && $("#spot6").html()!==o)
+{
+$("#spot6").html(x);
+$("#spot6").addClass("disable x");
+check();
+draw(turns);
+}
+else if($("#spot1").html()!==o && $("#spot1").html()!==x)
+{
+$("#spot1").html(x);
+$("#spot1").addClass("disable x");
+check();
+draw(turns);
+}
+else if($("#spot7").html()!==o && $("#spot7").html()!==x)
+{
+$("#spot7").html(x);
+$("#spot7").addClass("disable x");
+check();
+draw(turns);
+}
+
+else if($("#spot8").html()!==o && $("#spot8").html()!==x)
+{
+$("#spot8").html(x);
+$("#spot8").addClass("disable x");
+check();
+draw(turns);
+}
+else if($("#spot9").html()!==o && $("#spot9").html()!==x)
+{
+$("#spot9").html(x);
+$("#spot9").addClass("disable x");
+check();
+draw(turns);
+}
+  
+
+}
+}
+function draw(z){
+if(z==9){
+var c=setTimeout(function() {
+    $(".message").html("Tie-game");
+    $(".message").fadeIn(500);
+$("#board").fadeOut(500);
+$("#re").fadeOut(500);
+  }, 1500);setTimeout(function() {
+    $(".message").fadeOut(1000);
+    $("#board p").text("");
+$("#board p").removeClass("disable");
+$("#board p").removeClass("o");
+$("#board p").removeClass("x");
+$("#board").fadeIn(1000);
+$("#re").fadeIn(1000);
+turns=0;
+  }, 3000);
+  
+
+z=0;
+}
+}
+
+
+
+function check(){
+if(spot1.hasClass("x") && spot2.hasClass("x") && spot3.hasClass("x") || 
+spot4.hasClass("x") && spot5.hasClass("x") && spot6.hasClass("x") || 
+spot7.hasClass("x") && spot8.hasClass("x") && spot9.hasClass("x") || 
+spot1.hasClass("x") && spot4.hasClass("x") && spot7.hasClass("x") || 
+spot2.hasClass("x") && spot5.hasClass("x") && spot8.hasClass("x") || 
+spot3.hasClass("x") && spot6.hasClass("x") && spot9.hasClass("x") || 
+spot1.hasClass("x") && spot5.hasClass("x") && spot9.hasClass("x") || 
+spot3.hasClass("x") && spot5.hasClass("x") && spot7.hasClass("x") 
+){
+var z=setTimeout(function() {
+    $(".message").html("you loose");
+    $(".message").fadeIn(500);
+$("#board").fadeOut(500);
+$("#re").fadeOut(500);
+  }, 1500);setTimeout(function() {
+    $(".message").fadeOut(1000);
+
+$("#board p").text("");
+$("#board p").removeClass("disable");
+$("#board p").removeClass("o");
+$("#board p").removeClass("x");  
+$("#board").fadeIn(1000);
+$("#re").fadeIn(1000);
+turns=0;
+}, 3000);
+  
+}
+
+}
+
+
+});
+});
+$("#two").on("click",function(){
+$("h3").html("Choose Symbol for player 1");
+$("#play").addClass("secret");
+  $("#choice").removeClass("secret");
+var x;
+var o;
+$("#X").on("click",function(){
+  x="O";
+  o="X";
+    $("#board").removeClass("secret");
+  $("#choice").addClass("secret");
+  });
+$("#O").on("click",function(){
+  x="X";
+ o="O";
+    $("#board").removeClass("secret");
+  $("#choice").addClass("secret");
+  });
+  
+   
+
+$("#board p").on("click",function(){
+
+ 
+ if($(this).hasClass("disable")){
+//filled
+}
+
+else if(turns%2==0){
+turns++;
+  
+$(this).text(o);
+console.log(o);
+$(this).addClass("disable o");
+  draw(turns);
+if((spot1.hasClass("o") && spot2.hasClass("o") && spot3.hasClass("o")) || (spot4.hasClass("o") && spot5.hasClass("o") && spot6.hasClass("o")) || (spot7.hasClass("o") && spot8.hasClass("o") && spot9.hasClass("o")) || (spot1.hasClass("o") && spot4.hasClass("o") && spot7.hasClass("o")) || (spot2.hasClass("o") && spot5.hasClass("o") && spot8.hasClass("o")) || (spot3.hasClass("o") && spot6.hasClass("o") && spot9.hasClass("o")) || (spot1.hasClass("o") && spot5.hasClass("o") && spot9.hasClass("o")) || (spot3.hasClass("o") && spot5.hasClass("o") && spot7.hasClass("o"))){
+ 
+
+  var z=setTimeout(function() {
+    $(".message").html("winner "+o);
+  $("#board").fadeOut(100); 
+    $(".message").fadeIn(500);
+    $("#re").fadeOut(100);
+  }, 1500);setTimeout(function() {
+    $(".message").fadeOut(1000);
+     
+  $("#board p").text("");
+    $("#board p").removeClass("o");
+$("#board p").removeClass("x");
+turns=0;
+$("#board").fadeIn(1000);
+$("#re").fadeIn(1000);
+  }, 3000);
+  
+
+ 
+$("#board p").removeClass("disable");
+
+}
+}
+else{
+turns++;
+  console.log(this);
+$(this).text(x);
+  
+$(this).addClass("disable x");
+  draw(turns);
+if(spot1.hasClass("x") && spot2.hasClass("x") && spot3.hasClass("x") || spot4.hasClass("x") && spot5.hasClass("x") && spot6.hasClass("x") || spot7.hasClass("x") && spot8.hasClass("x") && spot9.hasClass("x") || spot1.hasClass("x") && spot4.hasClass("x") && spot7.hasClass("x") || spot2.hasClass("x") && spot5.hasClass("x") && spot8.hasClass("x") || spot3.hasClass("x") && spot6.hasClass("x") && spot9.hasClass("x") || spot1.hasClass("x") && spot5.hasClass("x") && spot9.hasClass("x") || spot3.hasClass("x") && spot5.hasClass("x") && spot7.hasClass("x"))
+{
+var z=setTimeout(function() {
+    $(".message").html("winner "+x);
+    $(".message").fadeIn(500);
+$("#board").fadeOut(100);
+ $("#re").fadeOut(100);
+}, 1500);setTimeout(function() {
+    $(".message").fadeOut(1000);
+$("#board p").text("");
+$("#board p").removeClass("o");
+$("#board p").removeClass("x");
+turns=0;
+$("#board").fadeIn(1000);
+$("#re").fadeIn(1000);
+}, 3000);
+  
+
+  
+$("#board p").removeClass("disable");
+
+}
+
+}
+  function draw(z){
+if(z==9){
+var c=setTimeout(function() {
+    $(".message").html("Tie-game");
+    $(".message").fadeIn(500);
+$("#board").fadeOut(100);
+$("#re").fadeOut(100);
+  }, 1500);setTimeout(function() {
+    $(".message").fadeOut(1000);
+    $("#board p").text("");
+$("#board p").removeClass("disable");
+$("#board p").removeClass("o");
+$("#board p").removeClass("x");
+turns=0;
+$("#board").fadeIn(1000);
+$("#re").fadeIn(1000);
+  }, 3000);
+  
+
+z=0;
+}
+  }
+});
+$("#reset").on("click",function(){
+$("#board p").text("");
+$("#board p").removeClass("disable");
+$("#board p").removeClass("o");
+$("#board p").removeClass("x");
+turns=0;
+});
+
+});
+$("#restart").on("click",function(){
+$("#choice").addClass("secret");  
+$("#play").removeClass("secret");
+  $("#board").addClass("secret");
+  $("#board p").text("");
+$("#board p").removeClass("disable");
+$("#board p").removeClass("o");
+$("#board p").removeClass("x");
+turns=0;
+});	
+});
+</script>
+<style>
+
+body{
+  background-image:url("https://wallpaperscraft.com/image/rainbow_light_shine_lines_15657_2048x1152.jpg");
+}
+h1{
+  text-align:center;
+  font-family:cooper;
+  font-size:60px;  
+}
+h2{
+  text-align:center;
+  font-family:arial;
+}
+.o{
+ color:green;
+}
+.x{
+  color:red;
+}
+#play{
+  width: 400px;
+	height: 200px;
+	margin: 100px auto;
+	padding: 20px 20px 9px;
+	background-color:rgba(200,00,500,0.9);
+	border-radius: 5px;
+	box-shadow: 3px 4px pink, 0px 10px 15px black;
+}
+.playy{
+  margin-top:50px;
+  
+}
+#play p {
+  
+  font-size:20px;
+	float: left;
+	position: relative;
+	cursor: pointer;
+	width: 150px;
+	height: 86px;
+	background: rgba(300,100,1000,1.0);
+	border-radius: 3px;
+	
+	margin: 0 7px 11px 0;
+	
+	line-height: 86px;
+	text-align: center;
+	user-select: none;
+  transition: all 0.3s ease;
+}
+#play p:hover {
+	background: #9c89f5;
+	box-shadow: 0px 1px #6b54d2;
+	color: white;
+}
+.secret{
+  display:none;
+}
+#board {
+	width: 350px;
+	height: 500px;
+	margin: 100px auto;
+	padding: 20px 20px 9px;
+	background-color:rgba(200,00,500,0.9);
+	border-radius: 5px;
+	box-shadow: 3px 4px pink, 0px 10px 15px black;
+}
+.keys{
+  margin-top:40px;
+}
+.keys p {
+  font-size:80px;
+	float: left;
+	position: relative;
+	cursor: pointer;
+	width: 96px;
+	height: 86px;
+	background: rgba(300,100,1000,1.0);
+	border-radius: 3px;
+	
+	margin: 0 7px 11px 0;
+	
+	line-height: 86px;
+	text-align: center;
+	user-select: none;
+  transition: all 0.3s ease;
+}
+.keys p:hover {
+	background: #9c89f5;
+	box-shadow: 0px 1px #6b54d2;
+	color: white;
+}
+#reset{
+  background-color:red;
+  color:white;
+  height:44px;
+  line-height:44px;
+  margin-top:80px;
+  width:96px;
+  border-radius:5px;
+  
+}
+#restart{
+  background-color:red;
+  color:white;
+  height:44px;
+  line-height:44px;
+  
+  width:96px;
+  border-radius:5px;
+  
+}
+.message {
+   text-align:center;
+  font-size:70px;
+  font-family:ariel;
+  line-height:300px;
+  background: rgba(0,0,0,.8);
+  width: 400px;
+  height: 400px;
+  display:none;
+  color:white;
+  position: absolute;
+  
+  top: 50px;
+  left: 450px;
+  box-sizing: border-box;
+}
+#re{
+  text-align:center;
+}
+#choice{
+  width: 400px;
+	height: 200px;
+	margin: 100px auto;
+	padding: 20px 20px 9px;
+	background-color:rgba(200,00,500,0.9);
+	border-radius: 5px;
+	box-shadow: 3px 4px pink, 0px 10px 15px black;
+}
+.choises{
+  margin-top:50px;
+  
+}
+#choice p {
+  
+  font-size:20px;
+	float: left;
+	position: relative;
+	cursor: pointer;
+	width: 150px;
+	height: 86px;
+	background: rgba(300,100,1000,1.0);
+	border-radius: 3px;
+	
+	margin: 0 7px 11px 0;
+	
+	line-height: 86px;
+	text-align: center;
+	user-select: none;
+  transition: all 0.3s ease;
+}
+#choice p:hover {
+	background: #9c89f5;
+	box-shadow: 0px 1px #6b54d2;
+	color: white;
+}
+</style>
+
+
+
+
+
+<h1>Tic Tac Toe</h1>
+<div id="play">
+  <div class="playy">
+    <h2> Choose your game</h2>
+  <p id="one">One player</p>
+  <p id="two">Two Player</p>
+   
+  </div>
+</div>
+<div id="choice" class="secret">
+  <div class="choises">
+    <h2>Choose Symbol for player 1</h2>
+  <p id="X">X</p>
+  <p id="O">O</p>
+   
+  </div>
+</div>
+<div class="message">
+        <p id="pp"></p>
+      </div>
+<div id="board" class="secret">
+  
+  <div class="keys">
+<p id="spot1" class="key">
+</p>
+<p id="spot2" class="key">
+</p>
+<p id="spot3" class="key">
+</p>
+<p id="spot4" class="key">
+</p>
+<p id="spot5" class="key">
+</p>
+<p id="spot6" class="key">
+</p>
+<p id="spot7" class="key">
+</p>
+<p id="spot8" class="key">
+</p>
+<p id="spot9" class="key">
+    </p> <button id="reset">reset</button>
+  </div>
+</div><div id="re">
+<button id="restart" onclick="rest()">restart</button>
+  </div>

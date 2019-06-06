@@ -1,0 +1,463 @@
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="https://cdn.rawgit.com/ashleighy/emoji.js/master/emoji.js.js"></script>
+
+	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var a=false;
+var z=[];
+var number;
+var x;
+var operator=["+","-","*","/"];
+var decimal=false;
+function one(){
+if(a==true)
+{
+z=[];
+decimal=false;
+ z.push(1);
+   console.log(z);
+   $("h3").html(z);
+a=false;
+}
+else{
+z.push(1);
+console.log(z);
+$("h3").html(z);
+}
+};
+function two(){
+ if(a==true)
+{
+z=[];
+decimal=false;
+ z.push(2);
+   console.log(z);
+   $("h3").html(z);
+a=false;
+}
+else{
+z.push(2);
+console.log(z);
+$("h3").html(z);
+}
+};
+function three(){
+ if(a==true)
+{
+z=[];
+decimal=false;
+ z.push(3);
+   console.log(z);
+   $("h3").html(z);
+a=false;
+}
+else{
+z.push(3);
+console.log(z);
+$("h3").html(z);
+}
+};
+function four(){
+ if(a==true)
+{
+z=[];
+decimal=false;
+ z.push(4);
+   console.log(z);
+   $("h3").html(z);
+a=false;
+}
+else{
+z.push(4);
+console.log(z);
+$("h3").html(z);
+}
+};
+function five(){
+if(a==true)
+{
+z=[];
+decimal=false;
+ z.push(5);
+   console.log(z);
+   $("h3").html(z);
+a=false;
+}
+else{
+z.push(5);
+console.log(z);
+$("h3").html(z);
+}
+};
+function six(){
+ if(a==true)
+{
+z=[];
+decimal=false;
+ z.push(6);
+   console.log(z);
+   $("h3").html(z);
+a=false;
+}
+else{
+z.push(6);
+console.log(z);
+$("h3").html(z);
+}
+};
+function seven(){
+ if(a==true)
+{
+z=[];
+decimal=false;
+ z.push(7);
+   console.log(z);
+   $("h3").html(z);
+a=false;
+}
+else{
+z.push(7);
+console.log(z);
+$("h3").html(z);
+}
+};
+function eight(){
+ if(a==true)
+{
+z=[];
+decimal=false;
+ z.push(8);
+   console.log(z);
+   $("h3").html(z);
+a=false;
+}
+else{
+z.push(8);
+console.log(z);
+$("h3").html(z);
+}
+};
+function nine(){
+if(a==true)
+{
+z=[];
+decimal=false;
+ z.push(9);
+   console.log(z);
+   $("h3").html(z);
+a=false;
+}
+else{
+z.push(9);
+console.log(z);
+$("h3").html(z);
+}
+};
+function zero(){
+ if(a==true)
+{
+z=[];
+decimal=false;
+ z.push(0);
+   console.log(z);
+   $("h3").html(z);
+a=false;
+}
+else{
+z.push(0);
+console.log(z);
+$("h3").html(z);
+}
+};
+function plus(){
+a=false;
+  decimal=false;
+  var lastchar=z[z.length-1];
+  console.log(lastchar);
+if(operator.indexOf(lastchar)!=-1)
+  {
+    z.pop()
+    z.push("+");
+   console.log(z);
+    $("h3").html(z);
+}
+  else {
+    z.push("+");
+  console.log(z);
+  $("h3").html(z);
+  }
+};
+function minus(){
+a=false;
+  decimal=false;
+  var lastchar=z[z.length-1];
+  console.log(lastchar);
+if(("+","-").indexOf(lastchar)!=-1)
+  {
+    z.pop()
+    z.push("-");
+   console.log(z);
+    $("h3").html(z);
+}
+  else {
+    z.push("-");
+  console.log(z);
+  $("h3").html(z);
+  }
+};
+function dot(){
+if(a==true){
+z=[];
+    var lastchar=z[z.length-1];
+  console.log(lastchar);
+if(lastchar==".")
+  {
+    z.pop()
+    z.push(".");
+   console.log(z);
+    $("h3").html(z);
+}
+    else if(decimal==false){
+z.push(".");
+      decimal=true;
+  console.log(z);
+  $("h3").html(z);
+}
+a=false;
+}
+else
+{
+ var lastchar=z[z.length-1];
+  console.log(lastchar);
+if(lastchar==".")
+  {
+    z.pop()
+    z.push(".");
+   console.log(z);
+    $("h3").html(z);
+}
+  else if(decimal==false){
+z.push(".");
+      decimal=true;
+  console.log(z);
+  $("h3").html(z);
+}
+
+   
+}
+};
+function multiply(){
+a=false;
+  decimal=false;
+  var lastchar=z[z.length-1];
+  console.log(lastchar);
+if(operator.indexOf(lastchar)!=-1)
+  {
+    z.pop()
+    z.push("*");
+   console.log(z);
+    $("h3").html(z);
+}
+  else {
+    z.push("*");
+  console.log(z);
+  $("h3").html(z);
+  }
+};
+function divide(){
+a=false;
+  decimal=false;
+  var lastchar=z[z.length-1];
+  console.log(lastchar);
+if(operator.indexOf(lastchar)!=-1)
+  {
+    z.pop()
+    z.push("/");
+   console.log(z);
+    $("h3").html(z);
+}
+  else {
+    z.push("/");
+  console.log(z);
+  $("h3").html(z);
+  }
+  };
+function clearr(){
+decimal=false;
+  z=[];
+  console.log(z);
+  $("h3").html(z);
+};
+function evall(){
+number=z.join("");
+  var len=number.length;
+  var first=number[0];
+var second=number[1];
+var lastchar=number[number.length-1];
+  var secondlast=number[number.length-2]
+if(first=="*" || first=="/")
+    {
+      $("h3").html("wrong input");
+     
+      z=[];
+    }
+else if(first=="." && (second=="*" || second=="/")){
+$("h3").html("wrong input");
+     
+      z=[];
+}
+  else if(operator.indexOf(lastchar)>-1 || (operator.indexOf(secondlast)>-1 && lastchar==".")||(lastchar=="." && len==1) ) {
+$("h3").html("add more input");
+}
+ 
+else {
+x=eval(number);
+  z=[x];
+  console.log(x);
+   $("h3").html(x);
+  a=true;
+    }
+
+};
+
+</script>
+<style>
+
+
+h1{
+  color:white;
+  font-family:cooper;
+  text-align:center;
+  font-size:50px;
+}
+body {
+		background: grey;
+}
+button{
+  font-size:16px}
+#cal {
+	width: 325px;
+	height: auto;
+	margin: 100px auto;
+	padding: 20px 20px 9px;
+	background-color:lightblue;
+	border-radius: 5px;
+	box-shadow: 3px 4px blue, 0px 10px 15px black;
+}
+.top button.clear {
+	float: left;
+}
+.top .screen {
+	height: 40px;
+	width: 212px;
+	float: right;	
+	background: rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);
+	font-size: 18px;
+	line-height: 43px;
+	color: black;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	text-align: right;
+	letter-spacing: 1px;
+}
+.keys, .top {overflow: hidden;}
+.keys button, .top button.clear {
+	float: left;
+	position: relative;
+	cursor: pointer;
+	width: 66px;
+	height: 36px;
+	background: white;
+	border-radius: 3px;
+	
+	margin: 0 7px 11px 0;
+	color: grey;
+	line-height: 36px;
+	text-align: center;
+	user-select: none;
+  transition: all 0.3s ease;
+}
+.keys button.operator {
+	background: rgba(500,900,1000,0.4);
+	margin-right: 0;
+}
+
+.keys button.eval {
+	background: rgba(500,1000,00,0.5);
+	
+	color: grey;
+}
+.top button.clear {
+	background: rgba(1000,50,50,0.8);
+	
+	color: white;
+}
+.keys button:hover {
+	background: #9c89f5;
+	box-shadow: 0px 1px #6b54d2;
+	color: white;
+}
+.keys button.eval:hover {
+	background: #abb851;
+	box-shadow: 0px 1px #717a33;
+	color: white;
+}
+.top button.clear:hover {
+	background: #f68991;
+	box-shadow: 0px 1px #d3545d;
+	color: white;
+}
+</style>
+
+<h1><b>Calculator</h1>
+<div id="cal">
+  <div class="top">
+
+  <button class="clear" onclick="clearr()">clear</button> <h3 class="screen"></h3>
+</div>
+    
+<div class="keys">
+
+<button onclick="seven()">7</button>
+<button onclick=eight()>8</button>
+<button onclick="nine()">9</button>
+<button class="operator" onclick="multiply()">X</button>
+<button onclick="four()">4</button>
+<button onclick="five()">5</button>
+<button onclick="six()">6</button>
+<button class="operator" onclick="divide()">/</button>
+<button  id="b1" onclick="one()">1</button>
+<button onclick="two()">2</button>
+<button onclick="three()">3</button>
+<button class="operator" onclick="minus()">-</button>
+<button onclick="zero()">0</button>
+<button onclick="dot()">.</button>
+<button class="eval" onclick="evall()">=</button>
+<button class="operator" onclick="plus()">+</button>
+  </div></b></div>
+<footer class="text-center">
+      <hr>
+      <p>Written and coded by <a href="https://www.freecodecamp.com/fcc3af33760" target="_blank">Nikhil Malhotra</a>.</p>
+    </footer></div>

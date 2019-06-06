@@ -1,0 +1,371 @@
+<!DOCTYPE html> 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js" integrity="sha256-I1nTg78tSrZev3kjvfdM5A5Ak/blglGzlaZANLPDl3I=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+
+
+var k=25;
+var n=5;
+console.log(k);
+$("#time").html(k+":00");
+$("#pp").html(k);
+$("#pp2").html(n);
+var z;
+var done=false;
+var running=false;
+var started=false;
+var Minutes = 60 * k;
+var Min=60*n;
+function startTimer(duration, display) {
+    if(running==true){
+      started=true;
+    var timer = duration, minutes, seconds;
+ z= setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        $("#time").html(minutes + ":" + seconds);
+if(running==true){
+  
+        if (--timer < 0 && done==false) {
+          
+           timer=Min;
+          done=true;
+          $("#time").addClass("red");
+ $("#time").removeClass("green");
+  $("#break").html("Break")
+        }
+  else if(timer<0 && done==true)
+    {
+      timer=Minutes;
+          done=false;
+      $("#time").addClass("green");
+ $("#time").removeClass("red");
+  $("#break").html("Working!!")
+    }
+}
+   else{    
+   }
+    }, 1000);
+    }
+  }
+display = document.querySelector('#time');
+  
+function stop()
+{
+  clearInterval(z);
+   $("#time").html(k+":00");
+  $("#b2").addClass("secret");
+  $("#b1").removeClass("secret");
+  $("#time").addClass("color");
+ $("#time").removeClass("green");
+  $("#time").removeClass("red");
+  $("#break").html("Timer")
+  started=false;
+  done=false;
+  running=false;
+  $("#b2").html("Pause");
+}
+function plus(){
+  if(running==false && started==false){
+ k++;
+  $("#pp").html(k);
+  Minutes = 60 * k;
+    $("#time").html(k+":00");
+  }
+}
+function minus(){
+ if(running==false && started==false){ 
+   if(k==1){
+ k=1;
+    
+  }
+  else{
+  k--;
+  $("#pp").html(k);
+  Minutes = 60 * k;
+    $("#time").html(k+":00");
+  } 
+ }
+}
+function start()
+{
+  if(running==true){
+running=false;
+    $("#b1").addClass("secret");   
+    $("#b2").removeClass("secret");   
+  }
+  else{
+    running=true;
+    startTimer(Minutes, display);
+    $("#b1").addClass("secret");
+    $("#b2").removeClass("secret");
+    $("#break").html("Working!!")
+    $("#time").removeClass("color");
+    $("#time").addClass("green");
+  }
+}
+function pause(){
+  if(running==true){
+running=false;
+    $("#b2").html("Resume");
+    $("#break").html("Paused")
+    $("#b1").addClass("secret");
+    $("#time").addClass("color");
+ $("#time").removeClass("green"); 
+  }
+  else{
+    running=true;
+    $("#b2").html("Pause");
+    $("#b1").addClass("secret");
+    $("#time").removeClass("color");
+    
+    if(done==true){
+    $("#break").html("Break");
+    $("#time").addClass("red");
+      $("#time").removeClass("green");
+    }
+    else{
+      $("#break").html("Working!!");
+    $("#time").addClass("green");
+      $("#time").removeClass("red");
+    }
+    
+  }
+}
+function plus2(){
+  if(running==false){
+ n++;
+  $("#pp2").html(n);
+  Min = 60 * n;   
+  }
+}
+function minus2(){
+ if(running==false){ 
+   if(n==1){
+ n=1;   
+  }
+  else{
+  n--;
+  $("#pp2").html(n);
+  Min = 60 * n;  
+  } 
+ }
+}
+</script>
+
+<style>
+body{
+  background-image:url("http://www.ccfwichita.com/files/Light-Background.gif");
+}
+.name{
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9);
+  text-align:center;
+  font-size:50px;
+  color:rgba(50,100,10,1.5);
+  font-family:ariel;  
+}
+#break{
+  text-align:center;
+  font-size:25px;
+  font-family:areal;
+}
+.green{
+ background-color:green;
+}
+.red{
+  background-color:red;
+}
+.secret{
+  display:none;
+}
+
+#main{
+  width: 325px;
+	height: 460px;
+	margin: 50px auto;
+	padding: 20px 60px 9px;
+	background-color:rgba(1000,100,10,0.9);
+	border-radius: 5px;
+  color:white;
+	box-shadow: 0px 10px 15px black;
+}
+.color{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#time{
+  color:white;
+	height: 200px;
+	width: 205px;
+		margin-top:-5px;
+	
+ border:3px solid;
+  border-color:lightblue;
+	border-radius: 100px;
+	box-shadow: inset 0px 4px 50px rgba(0, 0, 0, 0.2);
+	font-size: 50px;
+	line-height: 200px;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	letter-spacing: 1px;
+}
+button{
+  border-radius:5px;
+}
+#b1{
+  width:70px;
+  height:32px;
+  float:left;
+  color:white;
+  background-color:rgba(500,10,100,0.9);
+}
+#b2{
+  width:70px;
+  height:32px;
+  float:left;
+  color:white;
+  background-color:grey;
+}
+#r{
+  width:70px;
+  height:32px;
+  float:right;
+  color:white;
+  background-color:blue;
+}
+#in{
+  text-align:center;
+  line-height:15px;
+    color:darkgreen;
+  font-family:cooper;
+}
+#rest{
+  text-align:center;
+  line-height:15px;
+  margin-top:20px;
+  margin-left:10px;
+    color:darkgreen;
+  font-family:cooper;
+}
+#p1{
+  background-color:green;
+  color:white;
+  width:50px;
+  position:relative;
+  float:left;
+  
+  
+}
+#p2{
+  background-color:green;
+  color:white;
+  width:50px;
+  margin-top:-5px;
+  float:left;
+  
+}
+#m1{
+  background-color:red;
+  color:white;
+  padding-left:20px;
+  padding-right:25px;
+  margin-top:-30px;
+  position:relative;
+  float:right;
+  width:25px;
+   
+}
+#m2{
+  background-color:red;
+  color:white;
+  padding-left:20px;
+  padding-right:25px;
+  margin-top:-35px;
+  position:relative;
+  float:right;
+  width:25px;
+   
+}
+#pp
+{
+  margin-right:40px;
+  text-align:center;
+  font-family:Arial Rounded MT;
+}
+#pp2
+{
+  margin-top:-10px;
+  margin-right:40px;
+  text-align:center;
+  font-family:Arial Rounded MT;
+}
+#pp3{
+  text-align:center;
+  font-size:10px;
+  margin-top:15px;
+}
+
+</style>
+
+<h1 class="name"><b>Pomodoro clock</b></h1>
+<div id="main">
+  <p id="break">Timer</p>
+  <h1 id="time" class="color"></h1>
+<button onclick="start()" id="b1">Start</button>
+<button onclick="pause()" class="secret" id="b2">Pause</button>
+
+<button onclick="stop()" id="r">Reset</button>
+  <br><br>
+  <p id="in">Set inerval</p>
+  <div id="f1">
+<button onclick="plus()" id="p1">+</button>
+<p id="pp"></p>
+    <button onclick="minus()" id="m1">-</button>
+  </div>
+  <p id="rest">Set Break interval</p>
+<br>
+  <div id="f2">
+<button onclick="plus2()" id="p2">+</button>
+<p id="pp2"></p>
+<button onclick="minus2()" id="m2">-</button>
+</div>
+  <p id="pp3"><i>Press Reset to change the intervals</i></p>
+</div>
+<footer class="text-center">
+      <hr>
+      <p>Written and coded by <a href="https://www.freecodecamp.com/fcc3af33760" target="_blank">Nikhil Malhotra</a>.</p>
+    </footer>

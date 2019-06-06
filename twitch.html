@@ -1,0 +1,293 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="https://cdn.rawgit.com/ashleighy/emoji.js/master/emoji.js.js"></script>
+
+	
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<script>
+
+
+$('document').ready(function(){
+ 
+
+   
+    var a=["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+       for(var i=0;i<a.length;i++)
+        {
+        var  url='https://wind-bow.gomix.me/twitch-api/streams/'+a[i]+'?callback=?';
+     
+ $.getJSON(url, function(json) {
+   console.log(json);
+         if(json.stream !== null && json.stream !== undefined) {
+          
+          var profilePicture = '"' + json.stream.channel.logo + '"';
+          var channelLink = '"' + json.stream.channel.url + '"';
+          var userName = json.stream.channel.name;
+          var game = json.stream.game;
+          
+          console.log(game);
+          
+          console.log(channelLink);
+          
+          $(".content").prepend('<div class = "on"><img class = "icon col-sm-push-2" src=' + profilePicture + '/><p class = "onChannelName col-sm-6  "><a class ="onChannelName " href=' + channelLink + 'target="blank">' + userName + '</a> - ' + game + ': ' + json.stream.viewers + ' Viewers</p><p class = "online col-sm-4">Online</p></div>');
+        } 
+   else if(json.stream ===null) { 
+          
+          var offChannel = '"https://www.twitch.tv/'+json._links.channel.substr(38)+'"';
+          var offChannelname =json._links.channel.substr(38);
+          console.log(offChannelname);
+          
+          $(".content1").append('<div class = "off" id="off"><img class = "icon col-md-2" src="https://d30y9cdsu7xlg0.cloudfront.net/png/90580-200.png" ' + ' /><p class = "col-md-6 channelName"><a href=' + offChannel + '>' + offChannelname + '</a><p class = "line col-md-4">Offline</p></div>');
+          
+        }
+ 
+    });
+        }     
+   
+})
+ function onn()
+  {
+    
+    $(".not").addClass("hidden");
+    $(".off").addClass("hidden");
+    $("#b2").addClass("green");
+    $(".on").removeClass("hidden");
+  $("#b3").removeClass("red");
+    $("#b1").removeClass("grey");
+    $("#b4").removeClass("blue");
+    $(".searchtext").addClass("hidden");
+  }
+function offf()
+{
+  $(".not").addClass("hidden");
+  $(".on").addClass("hidden");
+  $("#b3").addClass("red");
+  $(".off").removeClass("hidden");
+  $("#b2").removeClass("green");
+  $("#b1").removeClass("grey");
+  $("#b4").removeClass("blue");
+  $(".searchtext").addClass("hidden");
+}
+function alll(){
+  $(".not").addClass("hidden");
+  $(".off").removeClass("hidden");
+  $("#b2").removeClass("green");
+   $(".on").removeClass("hidden");
+  $("#b3").removeClass("red");
+  $("#b1").addClass("grey");
+  $("#b4").removeClass("blue");
+  $(".searchtext").addClass("hidden");
+}
+function search()
+{
+  $(".searchtext").removeClass("hidden");
+  $(".not").removeClass("hidden");
+   $("#b2").removeClass("green");
+  $("#b3").removeClass("red");
+  $("#b4").addClass("blue");
+  $(".off").addClass("hidden");
+  $("#b1").removeClass("grey");
+  $(".on").addClass("hidden");
+  var inputvalue;
+  var value = $("#in").val();
+  var user = value.replace(/[^A-Z0-9_]/ig, "");
+   var a=["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+       for(var i=0;i<a.length;i++)
+        {
+  if(user==a[i])
+    {
+      inputvalue=user;
+    
+      $(".not").addClass("hidden");
+        no();
+    }
+          else{
+            
+            $(".not").html("No user found");
+            
+          }
+          $("#in").val("");
+}
+  function no(){
+   var  url='https://wind-bow.gomix.me/twitch-api/streams/'+inputvalue+'?callback=?';
+     
+ $.getJSON(url, function(json) {
+   console.log(json);
+         if(json.stream !== null && json.stream !== undefined) {
+          
+          var profilePicture = '"' + json.stream.channel.logo + '"';
+          var channelLink = '"' + json.stream.channel.url + '"';
+          var userName = json.stream.channel.name;
+          var game = json.stream.game;
+          
+          console.log(game);
+          
+          console.log(channelLink);
+          
+          $(".searchtext").html('<div class = "on"><img class = "icon col-md-2" src=' + profilePicture + '/><p class = "onChannelName col-md-6"><a class ="onChannelName" href=' + channelLink + 'target="blank">' + userName + '</a> - ' + game + ': ' + json.stream.viewers + ' Viewers</p><p class = "online col-md-4">Online</p></div>');
+        } 
+   else if(json.stream ===null) { 
+          
+          var offChannel = '"https://www.twitch.tv/'+json._links.channel.substr(38)+'"';
+          var offChannelname =json._links.channel.substr(38);
+          console.log(offChannelname);
+          
+          $(".searchtext").append('<div class = "off" id="off"><img class = "icon col-md-2" src="https://d30y9cdsu7xlg0.cloudfront.net/png/90580-200.png" ' + ' /><p class = "col-md-6 channelName"><a href=' + offChannel + '>' + offChannelname + '</a><p class = "line col-md-4">Offline</p></div>');
+          
+        }
+
+    });
+  }  
+}
+
+</script>
+<style>
+body {
+  background-color:#597c9c ;
+ 
+   
+}
+
+#in{
+  border-radius:5px;
+  height:32px;
+  width:150px;
+    margin:0px 0px 0px 20px;
+  
+
+ 
+}
+#img{
+  text-align:center;
+  font-size:30px;
+  color:maroon;
+}
+#b2{
+  margin:0px 0px 0px 20px;
+}
+#b3{
+  margin:0px 0px 0px 20px;
+}
+.btns{
+  text-align:center;
+  padding-bottom:20px;
+
+}
+.grey{
+  background-color:grey;
+}
+.red{
+  background-color:red;
+}
+.blue{
+  background-color:lightblue;
+  border-color:blue;
+}
+.green{
+  background-color:green;
+}
+.on {
+
+  background-color: green;
+  width: 100%;
+  height: 60px;
+  border-bottom: 3px solid white;
+  border-radius:5px;
+}
+
+.off {
+  width: 100%;
+  height: 60px;
+  background-color: maroon;
+  border-bottom: 3px solid white;
+  border-radius:5px;
+}
+
+
+.icon {
+  padding-top: 4px;
+  width: 90px;
+  height: 55px;
+}
+
+.channelName {
+
+  font-size: 18px;
+  padding-top: 15px;
+}
+
+.line {
+  color: white;
+  font-size: 18px;
+  padding-top: 15px;
+  text-align: right;
+  padding-right: 20px;
+}
+
+.onChannelName {
+  color: darkred;
+  font-size: 18px;
+  padding-top: 15px;
+}
+
+a {
+  color: white;
+}
+
+.online {
+  font-size: 18px;
+  padding-top: 15px;
+  text-align: right;
+  padding-right: 20px;
+}
+
+
+</style>
+
+<div id="img">
+  <img src="https://s3.amazonaws.com/files.enjin.com/294216/News_images/Twitch.gif">
+
+
+<br><br>
+<p id="p1">Click on the name of channel to play <br>
+  or click on the buttons to directly check their status<br>
+  you can also search channel name</p>
+</div>
+<br>
+<div class="btns">
+<button class="btn fa " id="b1" onclick="alll()">All</button>
+<button class="btn fa" id="b2" onclick="onn()">Online</button>
+<button class="btn fa" id="b3" onclick="offf()">Offline</button>
+<input type="text " id="in" class="fa" placeholder="type here"></input>
+<button class="btn fa fa-search" id="b4" onclick="search()">search</button>
+</div>
+<body class = 'container-fluid'>
+  <div class = 'row'>
+    
+    <div class = 'col-md-2'></div>
+    
+    <div class = 'col-md-8'>
+      <div class = 'table'>
+
+        <p class="not"></p>
+        <p class="searchtext"></p>
+
+<div class ="content">
+ <div class="content1">    
+</div>
+  </div>
+        	
+ </div>
+    </div>
+    
+    <div class = 'col-md-2'></div>
+  </div> 
+  </div>
